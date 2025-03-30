@@ -26,13 +26,12 @@ pipeline {
         }
     }
     post {
-        always {
-        
-            slackSend channel:('#kenneth_ip1',
-            color: "good" , 
-            message: "Message from Jenkins Pipeline")
 
+        always {
+            slackSend(channel: #kenneth_ip1, message: "Pipeline completed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}")
         }
+        
+        
     }
 
 
