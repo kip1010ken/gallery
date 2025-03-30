@@ -26,10 +26,10 @@ pipeline {
         }
     }
     post {
-        always{
+        always {
             echo 'slack notifications',
-            slackSend channel: '#kenneth_ip1'
-            color: "good", message: "Message from Jenkins Pipeline"
+            slackSend channel: '#kenneth_ip1',
+            color: "good" , message: "Message from Jenkins Pipeline"
 
         }
     }
