@@ -6,6 +6,10 @@ def COLOR_MAP = [
 pipeline {
     agent any
 
+    environment{
+        RENDER_DEPLOY_HOOK = credentials('RENDER_DEPLOY_HOOK')
+    }
+
     tools{
         nodejs 'node23'
     }
@@ -27,6 +31,14 @@ pipeline {
         stage ("unit test"){
             steps{
                 sh 'npm test'
+            }
+        }
+
+        stage('deploy to render'){
+            steps{
+                script {
+                    sh "curl -X POST ${RENDER_DEPLOY_HOOK}"
+                }
             }
         }
     }
